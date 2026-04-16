@@ -1,0 +1,36 @@
+class Solution {
+    /**
+     * @param {string} s
+     * @return {string}
+     */
+    longestPalindrome(s) {
+        let resLen = 0;
+        let resIdx = 0;
+
+        for(let i=0; i < s.length; i++) {
+            //odd
+            let l = i, r = i;
+            while(l >= 0 && r < s.length && s[l] === s[r]) {
+                if(r - l + 1 > resLen) {
+                    resLen = r - l + 1;
+                    resIdx = l;
+                }
+                r++;
+                l--;
+            }
+
+            //even
+            l = i, r = i+1;
+            while(l >= 0 && r < s.length && s[l] === s[r]) {
+                if(r - l + 1 > resLen) {
+                    resLen = r - l + 1;
+                    resIdx = l;
+                }
+                r++;
+                l--;
+            }
+        }
+
+        return s.slice(resIdx, resIdx + resLen);
+    }
+}
